@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #111111;
+  --bg-card: #161616;
+  --bg-hover: #1E1E1E;
+  --border: #272727;
+  --text-primary: #F0F0F0;
+  --text-secondary: #999999;
+  --text-muted: #555555;
+  --purple: #A855F7;
+  --purple-dark: #9333EA;
+  --purple-glow: rgba(168, 85, 247, 0.4);
+}
+
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Auth pages need scroll; workflow uses its own layout */
+body:has(.auth-page-scroll) {
+  overflow-y: auto;
+}
+
+/* Clerk — readable placeholders & OAuth label fallbacks (nested nodes) */
+.cl-card .cl-formFieldInput::placeholder,
+.cl-card input[type='email']::placeholder,
+.cl-card input[type='password']::placeholder,
+.cl-card input[type='text']::placeholder {
+  color: #9ca3af !important;
+  opacity: 1;
+}
+
+.cl-socialButtonsBlockButton,
+.cl-socialButtonsBlockButton .cl-button__text,
+.cl-socialButtonsBlockButton span {
+  color: #f0f0f0 !important;
+}
+
+.cl-footer,
+.cl-footerAction,
+.cl-internal-b3fm6y {
+  background-color: #121212 !important;
+}
+
+/* Dev mode pill: violet tint instead of harsh orange-on-white */
+.cl-badge[data-localization-key],
+.cl-developmentMode {
+  --clerk-color-warning: #a78bfa;
+}
+
+/* React Flow overrides */
+.react-flow__background {
+  background-color: #0A0A0A !important;
+}
+
+.react-flow__background pattern circle {
+  fill: #2a2a2a !important;
+}
+
+.react-flow__edge-path {
+  stroke: #A855F7 !important;
+  stroke-width: 2px !important;
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+  stroke-dasharray: 5;
+  animation: dashdraw 0.5s linear infinite;
+}
+
+@keyframes dashdraw {
+  from { stroke-dashoffset: 10; }
+  to   { stroke-dashoffset: 0;  }
+}
+
+.react-flow__handle {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  border: 2px solid #A855F7 !important;
+  background: #0A0A0A !important;
+  transition: all 0.15s ease;
+}
+
+.react-flow__handle:hover {
+  background: #A855F7 !important;
+  transform: scale(1.3);
+}
+
+.react-flow__handle.source {
+  right: -5px;
+}
+
+.react-flow__handle.target {
+  left: -5px;
+}
+
+.react-flow__minimap {
+  background: #111111 !important;
+  border: 1px solid #272727 !important;
+  border-radius: 8px !important;
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(168, 85, 247, 0.1) !important;
+}
+
+.react-flow__controls {
+  background: #161616 !important;
+  border: 1px solid #272727 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: #161616 !important;
+  border-bottom-color: #272727 !important;
+  fill: #999999 !important;
+}
+
+.react-flow__controls-button:hover {
+  background: #1E1E1E !important;
+  fill: #F0F0F0 !important;
+}
+
+/* Node styles */
+.workflow-node {
+  background: #161616;
+  border: 1px solid #272727;
+  border-radius: 12px;
+  min-width: 240px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.workflow-node:hover {
+  border-color: #444444;
+}
+
+.workflow-node.selected {
+  border-color: #A855F7;
+  box-shadow: 0 0 0 1px #A855F7, 0 4px 24px rgba(168,85,247,0.2);
+}
+
+.workflow-node.running {
+  border-color: #A855F7;
+  animation: nodeGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes nodeGlow {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(168,85,247,0.4); }
+  50%       { box-shadow: 0 0 24px 8px rgba(168,85,247,0.7); }
+}
+
+.node-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #272727;
+}
+
+.node-body {
+  padding: 12px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Input base */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  background: #111111;
+  border: 1px solid #272727;
+  color: #F0F0F0;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #A855F7;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1E1E1E;
+  border: 1px solid #333;
+  color: #F0F0F0;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 50;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+/* Fade-in animation */
+.animate-fadein {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

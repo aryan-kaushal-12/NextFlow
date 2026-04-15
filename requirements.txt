@@ -1,0 +1,7 @@
+# Image captioning backend — run: pip install -r requirements.txt
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+transformers>=4.40.0
+torch>=2.2.0          # CPU build is fine; model is small (~350 MB)
+Pillow>=10.3.0
+python-multipart>=0.0.9    # required by FastAPI for UploadFile
